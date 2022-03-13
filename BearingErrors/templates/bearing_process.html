@@ -1,0 +1,315 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>故障流程</title>
+    <link rel="stylesheet" type="text/css" href="{% static "BE/css/main.css " %}">
+    <link rel="stylesheet" type="text/css" href="{% static "BE/layui/css/layui.css " %}">
+    <script type="text/javascript" src="{% static "BE/layui/layui.js" %}"></script>
+</head>
+<body>
+<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+    <ul class="layui-tab-title">
+        <li class="layui-this">故障发现部门</li>
+        <li>故障审查办公室</li>
+        <li>相关部门</li>
+        <li>故障审查组织</li>
+        <li>供应商</li>
+    </ul>
+    <div class="layui-tab-content">
+        <div class="layui-tab-item layui-show">
+            <img src="{% static "img/process.png" %}"
+                 style="height: 800px; width: 700px; padding-top: 10px">
+            {#            {% if trans1|length == 0 %}#}
+            {#                <div name="norecords" class="layui-font-gray"#}
+            {#                     style="margin-top: 100px; text-align: center">#}
+            {#                    暂无记录#}
+            {#                </div>#}
+            {#            {% else %}#}
+            {#                {% for one in trans1 %}#}
+            {#                    <div class="layui-row">#}
+            {#                        <div class="layui-card">#}
+            {#                            <a href="{% url 'seller:ask_detail' %}?ask_id={{ one.ask_id }}">#}
+            {#                                <div class="layui-row layui-col-space15">#}
+            {#                                    <div class="layui-row layui-panel" style="padding: 30px;">#}
+            {#                                        <div class="layui-col-md2">#}
+            {#                                            <img class="mrf-logo"#}
+            {#                                                 src="{% static '' %}{{ one.goods_id.img_path }}">#}
+            {#                                        </div>#}
+            {#                                        <div class="layui-col-md6">#}
+            {#                                            <div class="layui-row layui-font-20">#}
+            {#                                                {{ one.goods_id.goods_name }}#}
+            {#                                            </div>#}
+            {#                                            <div class="layui-row layui-font-8" style="padding-top: 10px">#}
+            {#                                                <div class="layui-col-md6">#}
+            {#                                                    尺码:{{ one.goods_id.size }}#}
+            {#                                                </div>#}
+            {#                                                <div class="layui-col-md6">#}
+            {#                                                    货号:{{ one.goods_id_id }}#}
+            {#                                                    <br>#}
+            {#                                                    {% if one.trade_id_id %}#}
+            {#                                                        交易号:{{ one.trade_id_id }}#}
+            {#                                                    {% endif %}#}
+            {#                                                </div>#}
+            {#                                            </div>#}
+            {#                                        </div>#}
+            {#                                        <div class="layui-col-md2">#}
+            {#                                            <div class="layui-row">#}
+            {#                                                发起时间{{ one.time|date:"Y-m-d H:i:s" }}#}
+            {#                                            </div>#}
+            {#                                            <div class="layui-row layui-font-20" style="padding-top: 10px">#}
+            {#                                                交易价格{{ one.ask }}#}
+            {#                                            </div>#}
+            {#                                        </div>#}
+            {#                                        <div class="layui-col-md1" style="padding-right: 5px">#}
+            {#                                            <a href="{% url 'seller:pay' %}?ask_id={{ one.ask_id }}" class="layui-btn">支付</a>#}
+            {#                                            <a onclick="return deleteJob('确认取消？');"#}
+            {#                                               href="{% url 'seller:ask_cancel' %}?ask_id={{ one.ask_id }}"#}
+            {#                                               class="layui-btn">取消</a>#}
+            {#                                            <div class="layui-row" style="padding-top: 10px">#}
+            {#                                                交货期限{{ one.time|add:delta|date:"Y-m-d H:i:s" }}#}
+            {#                                            </div>#}
+            {#                                        </div>#}
+            {#                                    </div>#}
+            {#                                </div>#}
+            {#                            </a>#}
+            {#                        </div>#}
+            {#                    </div>#}
+            {#                {% endfor %}#}
+            {#            {% endif %}#}
+        </div>
+
+        <div class="layui-tab-item">
+            <img src="{% static "img/process.png" %}"
+                 style="height: 800px; width: 700px; padding-top: 10px">
+            {#            {% if trans2|length == 0 %}#}
+            {#                <div name="norecords" class="layui-font-gray"#}
+            {#                     style="margin-top: 100px; text-align: center">#}
+            {#                    暂无记录#}
+            {#                </div>#}
+            {#            {% else %}#}
+            {#                {% for one in trans2 %}#}
+            {#                    <div class="layui-row">#}
+            {#                        <div class="layui-card">#}
+            {#                            <a href="{% url 'seller:ask_detail' %}?ask_id={{ one.ask_id }}">#}
+            {#                                <div class="layui-row layui-col-space15">#}
+            {#                                    <div class="layui-row layui-panel" style="padding: 30px;">#}
+            {#                                        <div class="layui-col-md2">#}
+            {#                                            <img class="mrf-logo"#}
+            {#                                                 src="{% static '' %}{{ one.goods_id.img_path }}">#}
+            {#                                        </div>#}
+            {#                                        <div class="layui-col-md6">#}
+            {#                                            <div class="layui-row layui-font-20">#}
+            {#                                                {{ one.goods_id.goods_name }}#}
+            {#                                            </div>#}
+            {#                                            <div class="layui-row layui-font-8" style="padding-top: 10px">#}
+            {#                                                <div class="layui-col-md6">#}
+            {#                                                    尺码:{{ one.goods_id.size }}#}
+            {#                                                </div>#}
+            {#                                                <div class="layui-col-md6">#}
+            {#                                                    货号:{{ one.goods_id_id }}#}
+            {#                                                    {% if one.trade_id_id %}#}
+            {#                                                        交易号:{{ one.trade_id_id }}#}
+            {#                                                    {% endif %}#}
+            {#                                                </div>#}
+            {#                                            </div>#}
+            {#                                        </div>#}
+            {#                                        <div class="layui-col-md2">#}
+            {#                                            <div class="layui-row">#}
+            {#                                                {{ one.time|date:"Y-m-d H:i:s" }}#}
+            {#                                            </div>#}
+            {#                                            <div class="layui-row layui-font-20" style="padding-top: 10px">#}
+            {#                                                {{ one.ask }}#}
+            {#                                            </div>#}
+            {#                                        </div>#}
+            {#                                        <div class="layui-col-md2" style="padding-right: 5px">#}
+            {#                                            <a href="javascript:change_body('body_logist',{{ one.ask_id }})"#}
+            {#                                               class="layui-btn">去发货</a>#}
+            {#                                            <div class="layui-row" style="padding-top: 5px">#}
+            {#                                                <a href="{% url 'seller:ask_cancel' %}?ask_id={{ one.ask_id }}"#}
+            {#                                                   class="layui-btn layui-btn-primary layui-border-red">取消</a></div>#}
+            {#                                            <div class="layui-row" style="padding-top: 10px">#}
+            {#                                                剩余时间{{ order_time }}#}
+            {#                                            </div>#}
+            {#                                        </div>#}
+            {#                                    </div>#}
+            {#                                </div>#}
+            {#                            </a>#}
+            {#                        </div>#}
+            {#                    </div>#}
+            {#                {% endfor %}#}
+            {#            {% endif %}#}
+        </div>
+
+        <div class="layui-tab-item">
+            <img src="{% static "img/process.png" %}"
+                 style="height: 800px; width: 700px; padding-top: 10px">
+            {#            {% if trans3|length == 0 %}#}
+            {#                <div name="norecords" class="layui-font-gray"#}
+            {#                     style="margin-top: 100px; text-align: center">#}
+            {#                    暂无记录#}
+            {#                </div>#}
+            {#            {% else %}#}
+            {#                {% for one in trans3 %}#}
+            {#                    <div class="layui-row">#}
+            {#                        <div class="layui-card">#}
+            {#                            <a href="{% url 'seller:ask_detail' %}?ask_id={{ one.ask_id }}">#}
+            {#                                <div class="layui-row layui-col-space15">#}
+            {#                                    <div class="layui-row layui-panel" style="padding: 30px;">#}
+            {#                                        <div class="layui-col-md2">#}
+            {#                                            <img class="mrf-logo"#}
+            {#                                                 src="{% static '' %}{{ one.goods_id.img_path }}">#}
+            {#                                        </div>#}
+            {#                                        <div class="layui-col-md6">#}
+            {#                                            <div class="layui-row layui-font-20">#}
+            {#                                                {{ one.goods_name }}#}
+            {#                                            </div>#}
+            {#                                            <div class="layui-row layui-font-8" style="padding-top: 10px">#}
+            {#                                                <div class="layui-col-md3">#}
+            {#                                                    尺码:{{ one.size }}#}
+            {#                                                </div>#}
+            {#                                                <div class="layui-col-md3">#}
+            {#                                                    模式:{{ one.ask_status }}#}
+            {#                                                </div>#}
+            {#                                                <div class="layui-col-md6">#}
+            {#                                                    货号:{{ one.goods_id_id }}#}
+            {#                                                </div>#}
+            {#                                            </div>#}
+            {#                                        </div>#}
+            {#                                        <div class="layui-col-md2">#}
+            {#                                            <div class="layui-row">#}
+            {#                                                时间{{ one.time|date:"Y-m-d H:i:s" }}#}
+            {#                                            </div>#}
+            {#                                            <div class="layui-row layui-font-20" style="padding-top: 10px">#}
+            {#                                                价格{{ order_time }}#}
+            {#                                            </div>#}
+            {#                                        </div>#}
+            {#                                        <div class="layui-col-md1" style="padding-right: 5px">#}
+            {#                                            <div class="layui-row" style="padding-top: 5px">#}
+            {#                                                <a href="{% url 'seller:ask_cancel' %}?ask_id={{ one.ask_id }}"#}
+            {#                                                   class="layui-btn layui-btn-primary layui-border-red">取消</a></div>#}
+            {#                                        </div>#}
+            {#                                    </div>#}
+            {#                                </div>#}
+            {#                            </a>#}
+            {#                        </div>#}
+            {#                    </div>#}
+            {#                {% endfor %}#}
+            {#            {% endif %}#}
+        </div>
+
+        <div class="layui-tab-item">
+            <img src="{% static "img/process.png" %}"
+                 style="height: 800px; width: 700px; padding-top: 10px">
+            {#            {% if trans4|length == 0 %}#}
+            {#                <div name="norecords" class="layui-font-gray"#}
+            {#                     style="margin-top: 100px; text-align: center">#}
+            {#                    暂无记录#}
+            {#                </div>#}
+            {#            {% else %}#}
+            {#                {% for one in trans4 %}#}
+            {#                    <div class="layui-row layui-card">#}
+            {#                        <a href="{% url 'seller:ask_detail' %}?ask_id={{ one.ask_id }}">#}
+            {#                            <div class="layui-row layui-col-space15">#}
+            {#                                <div class="layui-row layui-panel" style="padding: 30px;">#}
+            {#                                    <div class="layui-col-md2">#}
+            {#                                        <img class="mrf-logo" src="{% static '' %}{{ one.goods_id.img_path }}">#}
+            {#                                    </div>#}
+            {#                                    <div class="layui-col-md6">#}
+            {#                                        <div class="layui-row layui-font-20">#}
+            {#                                            {{ one.goods_name }}球鞋名字#}
+            {#                                        </div>#}
+            {#                                        <div class="layui-row layui-font-8" style="padding-top: 10px">#}
+            {#                                            <div class="layui-col-md3">#}
+            {#                                                尺码:{{ one.size }}#}
+            {#                                            </div>#}
+            {#                                            <div class="layui-col-md3">#}
+            {#                                                模式:{{ one.ask_status }}#}
+            {#                                            </div>#}
+            {#                                            <div class="layui-col-md6">#}
+            {#                                                货号:{{ one.goods_id_id }}#}
+            {#                                            </div>#}
+            {#                                        </div>#}
+            {#                                    </div>#}
+            {#                                    <div class="layui-col-md2">#}
+            {#                                        <div class="layui-row">#}
+            {#                                            时间{{ one.time|date:"Y-m-d H:i:s" }}#}
+            {#                                        </div>#}
+            {#                                        <div class="layui-row layui-font-20" style="padding-top: 10px">#}
+            {#                                            价格{{ order_time }}#}
+            {#                                        </div>#}
+            {#                                    </div>#}
+            {#                                    <div class="layui-col-md1" style="padding-right: 5px">#}
+            {#                                        <div class="layui-icon layui-icon-next"></div>#}
+            {#                                    </div>#}
+            {#                                </div>#}
+            {#                            </div>#}
+            {#                        </a>#}
+            {#                    </div>#}
+            {#                {% endfor %}#}
+            {#            {% endif %}#}
+        </div>
+
+        <div class="layui-tab-item">
+            <img src="{% static "img/process.png" %}"
+                 style="height: 800px; width: 700px; padding-top: 10px">
+            {#            {% if trans5|length == 0 %}#}
+            {#                <div name="norecords" class="layui-font-gray"#}
+            {#                     style="margin-top: 100px; text-align: center">#}
+            {#                    暂无记录#}
+            {#                </div>#}
+            {#            {% else %}#}
+            {#                {% for one in trans5 %}#}
+            {#                    <div class="layui-row layui-card">#}
+            {#                        <a href="{% url 'seller:ask_detail' %}?ask_id={{ one.ask_id }}">#}
+            {#                            <div class="layui-row layui-col-space15">#}
+            {#                                <div class="layui-row layui-panel" style="padding: 30px;">#}
+            {#                                    <div class="layui-col-md2">#}
+            {#                                        <img class="mrf-logo" src="{% static '' %}{{ one.goods_id.img_path }}">#}
+            {#                                    </div>#}
+            {#                                    <div class="layui-col-md6">#}
+            {#                                        <div class="layui-row layui-font-20">#}
+            {#                                            {{ one.goods_name }}球鞋名字#}
+            {#                                        </div>#}
+            {#                                        <div class="layui-row layui-font-8" style="padding-top: 10px">#}
+            {#                                            <div class="layui-col-md6">#}
+            {#                                                尺码:{{ one.size }}#}
+            {#                                            </div>#}
+            {#                                            <div class="layui-col-md6">#}
+            {#                                                货号:{{ one.goods_id_id }}#}
+            {#                                            </div>#}
+            {#                                        </div>#}
+            {#                                    </div>#}
+            {#                                    <div class="layui-col-md2">#}
+            {#                                        <div class="layui-row">#}
+            {#                                            时间{{ one.time|date:"Y-m-d H:i:s" }}#}
+            {#                                        </div>#}
+            {#                                        <div class="layui-row layui-font-20" style="padding-top: 10px">#}
+            {#                                            {{ order_time }}#}
+            {#                                        </div>#}
+            {#                                    </div>#}
+            {#                                    <div class="layui-col-md1 layui-row" style="padding-right: 5px">#}
+            {#                                        <div class="layui-row">#}
+            {#                                            <a href="javascript:change_sell('change_sell',{{ one.ask_id }}, {{ one.ask }})"#}
+            {#                                               class="layui-btn" style="margin-bottom: 5px">#}
+            {#                                                修改售价#}
+            {#                                            </a>#}
+            {#                                        </div>#}
+            {#                                        <div class="layui-row">#}
+            {#                                            <a onclick="return deleteJob('寄售模式取消出售将扣除保证金，是否确认取消出售');"#}
+            {#                                               href="{% url 'seller:ask_cancel' %}?ask_id={{ one.ask_id }}"#}
+            {#                                               class="layui-btn">取消出售</a>#}
+            {#                                        </div>#}
+            {#                                    </div>#}
+            {#                                </div>#}
+            {#                            </div>#}
+            {#                        </a>#}
+            {#                    </div>#}
+            {#                {% endfor %}#}
+            {#            {% endif %}#}
+        </div>
+    </div>
+</div>
+</body>
+</html>
