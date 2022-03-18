@@ -2,7 +2,7 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
-
+# 加一行注释
 
 def main():
     """Run administrative tasks."""
