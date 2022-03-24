@@ -10,5 +10,6 @@ urlpatterns = [
     path('welcome', views.welcome, name='welcome'),
     path('bearing_info', views.bearing_info, name='bearing_info'),
     path('tree', views.show_tree, name='tree'),
-    path('bearing_process', views.bearing_process, name='BP')
+    path('bearing_process', views.bearing_process, name='BP'),
+    path('BearingErrors/dashboard/', views.welcome, name='test'),
 ]
