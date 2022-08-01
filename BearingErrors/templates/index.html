@@ -15,16 +15,11 @@
     <!-- <link rel="stylesheet" href="{% static 'BE/lib/layui/css/layui.css' %}"> -->
     <script src="{% static 'BE/lib/layui/layui.js' %}"></script>
     <script type="text/javascript" src="{% static 'BE/js/xadmin.js' %}"></script>
-    <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
-    <!--[if lt IE 9]>
-    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js' %}"></script>
-    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js' %}"></script>
-    <![endif]-->
     <link rel="stylesheet" type="text/css" href="{% static "BE/css/main.css " %}">
     <link rel="stylesheet" type="text/css" href="{% static "BE/layui/css/layui.css " %}">
     <script type="text/javascript" src="{% static "BE/layui/layui.js" %}"></script>
-{#    <script type="text/javascript" src="{% static "BE/js/mm.js" %}"></script>#}
-{#    <script type="text/javascript" src="{% static "BE/js/jquery-3.6.0.js" %}"></script>#}
+    {#    <script type="text/javascript" src="{% static "BE/js/mm.js" %}"></script>#}
+    {#    <script type="text/javascript" src="{% static "BE/js/jquery-3.6.0.js" %}"></script>#}
     <script>
         // 是否开启刷新记忆tab功能
         var is_remember = false
@@ -34,7 +29,7 @@
 <!-- 顶部开始 -->
 <div class="container">
     <div class="logo">
-        <a href="" style="font-size: small">故障数据库</a></div>
+        <a href="" style="font-size: small">轴承信息数据库</a></div>
     <div class="left_open">
         <a><i title="展开左侧栏" class="iconfont">&#xe699;</i></a>
     </div>
@@ -43,11 +38,11 @@
             <a href="javascript:;">{{ user }}</a>
             <dl class="layui-nav-child">
                 <dd>
-                    <a href="/index/logout/">登录/退出登录</a></dd>
+                    <a href="/user/logout/">退出登录</a></dd>
             </dl>
         </li>
         <li class="layui-nav-item to-index">
-            <a href="http://127.0.0.1:8000/admin">后台管理</a></li>
+            <a href="http://127.0.0.1:8000/admin" target="_blank">后台管理</a></li>
     </ul>
 </div>
 <!-- 顶部结束 -->
@@ -59,26 +54,54 @@
             <li>
                 <a href="javascript:;">
                     <i class="iconfont left-nav-li" lay-tips="轴承信息">&#xe723;</i>
-                    <cite>轴承信息</cite>
+                    <cite>轴承信息库</cite>
                     <i class="iconfont nav_right">&#xe697;</i></a>
                 <ul class="sub-menu">
                     <li>
-                        <a onclick="xadmin.add_tab('轴承信息','bearing_info',true)">
+                        <a onclick="xadmin.add_tab('轴承信息总览','bearing_info',true)">
                             <i class="iconfont">&#xe6a7;</i>
-                            <cite>轴承信息</cite></a>
+                            <cite>轴承信息总览</cite></a>
+                    </li>
+                    <li>
+                        <a onclick="xadmin.add_tab('轴承指标树','/tree_data/',true)">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>指标池树图与数据可视化</cite></a>
                     </li>
                 </ul>
             </li>
             <li>
                 <a href="javascript:;">
-                    <i class="iconfont left-nav-li" lay-tips="故障分析流程管理">&#xe723;</i>
-                    <cite>故障分析流程管理</cite>
+                    <i class="iconfont left-nav-li" lay-tips="轴承数据维护">&#xe723;</i>
+                    <cite>轴承数据维护</cite>
                     <i class="iconfont nav_right">&#xe697;</i></a>
                 <ul class="sub-menu">
                     <li>
-                        <a onclick="xadmin.add_tab('故障分析流程管理','bearing_process',true)">
+                        <a onclick="xadmin.add_tab('轴承信息维护','/admin/User/bearinginfo/',true)">
                             <i class="iconfont">&#xe6a7;</i>
-                            <cite>故障分析流程管理</cite></a>
+                            <cite>轴承信息维护</cite></a>
+                    </li>
+                    <li>
+                        <a onclick="xadmin.add_tab('轴承质量数据维护','/admin/User/qualitymessage/',true)">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>轴承质量数据维护</cite></a>
+                    </li>
+                    <li>
+                        <a onclick="xadmin.add_tab('指标池层级维护','/admin/User/indicatorpond/',true)">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>指标池维护</cite></a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    <i class="iconfont left-nav-li" lay-tips="轴承质量评估">&#xe723;</i>
+                    <cite>轴承质量评估</cite>
+                    <i class="iconfont nav_right">&#xe697;</i></a>
+                <ul class="sub-menu">
+                    <li>
+                        <a onclick="xadmin.add_tab('评价任务创建','eval/eval_management/',true)">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>评价任务创建</cite></a>
                     </li>
                 </ul>
             </li>
@@ -115,13 +138,13 @@
 <!-- 右侧主体结束 -->
 <!-- 中部结束 -->
 <script>
-var _hmt = _hmt || [];
-(function () {
-    var hm = document.createElement("script");
-    hm.src = "https://hm.baidu.com/hm.js?b393d153aeb26b46e9431fabaf0f6190";
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(hm, s);
-})();</script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?b393d153aeb26b46e9431fabaf0f6190";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();</script>
 </body>
 
 </html>
